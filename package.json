@@ -1,0 +1,14 @@
+{
+    "dependencies": {
+        "@tensorflow/tfjs": "^1.7.4",
+        "@tensorflow/tfjs-node": "^1.7.4",
+        "@tensorflow/tfjs-vis": "^1.4.0"
+    },
+    "name": "js-ml-code",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "browserslist": [
+        "last 1 Chrome version"
+    ]
+}
