@@ -92,12 +92,48 @@ window.onload = async () => {
 
     await model.fit(trainXs, trainYs, {
         validationData: [testXs, testYs],
-        epochs: 50,
+        epochs: 150,
         callbacks: tfvis.show.fitCallbacks(
             { name: "训练过程" },
             ["loss", "val_loss", "acc", "val_acc"],
             { callbacks: ["onEpochEnd"] }
         )
     })
+
+    const canvas = document.querySelector("canvas");
+
+    canvas.addEventListener("mousemove", (e) => {
+        if (e.buttons === 1) {
+            const ctx = canvas.getContext("2d");
+            ctx.fillStyle = "rgb(255,255,255)";
+            ctx.fillRect(e.offsetX, e.offsetY, 12, 12);
+        }
+    });
+
+    window.clear = () => {
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "rgb(0,0,0)";
+        ctx.fillRect(0, 0, 300, 300);
+    }
+
+    clear();
+
+    window.predict = () => {
+        const input = tf.tidy(() => {
+            return tf.image.resizeBilinear(
+                tf.browser.fromPixels(canvas),
+                [28, 28],
+                true
+
+            )
+                .slice([0, 0, 0], [28, 28, 1])
+                // 除以 255 因为 255 色彩
+                .toFloat().div(255)
+                .reshape([1, 28, 28, 1]);
+        });
+
+        const pred = model.predict(input).argMax(1);
+        alert(`预测结果为：${pred.dataSync()[0]}`);
+    }
 
 }
