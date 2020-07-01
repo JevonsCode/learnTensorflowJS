@@ -107,4 +107,9 @@ window.onload = async () => {
         const index = pred.argMax(1).dataSync()[0];
         console.log("结果", index, BRAND_CLASSES[index]);
     }
+
+
+    window.download = async () => {
+        await model.save("downloads://model");
+    }
 };
