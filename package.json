@@ -1,5 +1,6 @@
 {
     "dependencies": {
+        "@tensorflow-models/speech-commands": "^0.4.2",
         "@tensorflow/tfjs": "^1.7.4",
         "@tensorflow/tfjs-node": "^1.7.4",
         "@tensorflow/tfjs-vis": "^1.4.0"
