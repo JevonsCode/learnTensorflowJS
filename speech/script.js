@@ -1,5 +1,7 @@
 /**
  * 语音识别
+ * 
+ * parcel .\speech\index.html && hs data --cors
  */
 
 import * as speechCommands from "@tensorflow-models/speech-commands";
