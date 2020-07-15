@@ -8,7 +8,8 @@
  *
  *
  */
-import * as speechCommands from "@tensorflow-models/speech-commands"
+import * as speechCommands from "@tensorflow-models/speech-commands";
+import * as tfvis from "@tensorflow/tfjs-vis";
 
 const MODEL_PATH = "http://127.0.0.1:8080/speech";
 
@@ -49,4 +50,32 @@ window.collect = async (btn) => {
     document.querySelector("#count").innerHTML = JSON.stringify(transferRecognizer.countExamples(), null, 4);
 
     console.log(transferRecognizer.countExamples())
+}
+
+window.train = async () => {
+    await transferRecognizer.train({
+        epochs: 30,
+        callback: tfvis.show.fitCallbacks(
+            { name: "train" },
+            ["loss", "acc"],
+            { callbacks: ["onEpochEnd"] }
+        )
+    })
+}
+
+window.toggle = async (checked) => {
+    if (checked) {
+        await transferRecognizer.listen(result => {
+            const { scores } = result;
+            const labels = transferRecognizer.wordLabels();
+            const index = scores.indexOf(Math.max(...scores));
+            const r = labels[index];
+            console.log(`这是个啥 ==> : window.toggle -> r`, r)
+        }, {
+            overlapFactor: 0,
+            probabilityThreshold: 0.85
+        });
+    } else {
+        transferRecognizer.stopListening();
+    }
 }
