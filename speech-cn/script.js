@@ -79,3 +79,16 @@ window.toggle = async (checked) => {
         transferRecognizer.stopListening();
     }
 }
+
+
+/**
+ * @link https://github.com/tensorflow/tfjs-models/tree/master/speech-commands#serialize-examples-from-a-transfer-recognizer
+ */
+window.save = () => {
+    const arrayBuffer = transferRecognizer.serializeExamples();
+    const b = new Blob([arrayBuffer]);
+    const a = document.createElement("a");
+    a.href = window.URL.createObjectURL(b);
+    a.download = "data.bin";
+    a.click();
+}
