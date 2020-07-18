@@ -1,4 +1,62 @@
 <script src="script.js"></script>
 
+<style>
+    .slider {
+        width: 500px;
+        overflow: hidden;
+        border: 2px solid #666;
+    }
+
+    .img-box {
+        display: flex;
+        width: 2000px;
+        background: #5c585a;
+        transition: transform .5s;
+    }
+
+    .img {
+        height: 420px;
+        color: #fff;
+        font-size: 180px;
+        text-align: center;
+        line-height: 420px;
+        width: 500px;
+    }
+
+    .bg1 {
+        background: #db2888;
+    }
+
+    .bg2 {
+        background: #04469b;
+    }
+
+    .bg3 {
+        background: #f56f01;
+    }
+
+    .bg4 {
+        background: #b616e7;
+    }
+</style>
+
 <div><i></i></div>
 <br />
+
+<div class="slider">
+    <div class="img-box">
+        <div class="img bg1">1</div>
+        <div class="img bg2">2</div>
+        <div class="img bg3">3</div>
+        <div class="img bg4">4</div>
+    </div>
+</div>
+<br />
+<br />
+
+<button onclick="sliderPlay('上一张')">←</button>
+<button onclick="sliderPlay('下一张')">→</button>
+
+<br />
+<br />
+监听开关：<input type="checkbox" onchange="toggle(this.checked)" />
