@@ -36,3 +36,9 @@ conda activate tfjs
 # 转换
 tensorflowjs_converter --input_format=keras --output_format=tfjs_layers_model data\mobilenet\keras.h5 data\mobilenet\web_model_js\
 ```
+
+## JS to Python
+
+```bash
+tensorflowjs_converter --input_format=tfjs_layers_model --output_format=keras data\mobilenet\web_model\model.json data\mobilenet\web_model_py\keras 2.h
+```
