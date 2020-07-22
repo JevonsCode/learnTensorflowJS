@@ -21,3 +21,18 @@ pip install tensorflowjs
 # pip 用清华的源
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple tensorflowjs
 ```
+
+
+## Python 转 JS
+
+```bash
+# 激活 tfjs 环境
+conda activate tfjs
+```
+
+[转化要求](https://github.com/tensorflow/tfjs/tree/master/tfjs-converter#conversion-flags)
+
+```bash
+# 转换
+tensorflowjs_converter --input_format=keras --output_format=tfjs_layers_model data\mobilenet\keras.h5 data\mobilenet\web_model_js\
+```
