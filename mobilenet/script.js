@@ -2,10 +2,10 @@ import * as tf from "@tensorflow/tfjs";
 import { IMAGENET_CLASSES } from "./imagenet_classes";
 import { file2img } from "./utils";
 
-const MOBILENET_MODEL_PATH = "http://127.0.0.1:8080/mobilenet/web_model/model.json";
+const MOBILENET_MODEL_PATH = "http://127.0.0.1:8080/mobilenet/graph_model/model.json";
 
 window.onload = async () => {
-    const model = await tf.loadLayersModel(MOBILENET_MODEL_PATH);
+    const model = await tf.loadGraphModel(MOBILENET_MODEL_PATH);
     window.predict = async (f) => {
         const img = await file2img(f);
         document.body.appendChild(img);
